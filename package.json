@@ -1,8 +1,8 @@
 {
   "name": "@aidigitaldreamers/v1-core",
-  "description": "🎛 Core contracts for the Netixswap protocol",
+  "description": "🎛 Core contracts for the Netixswap V1 protocol",
   "version": "1.0.1",
-  "homepage": "https://aidigitaldreamers",
+  "homepage": "https://aidigitaldreamers.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/aidigidreamers/netixswap-v1-core"
@@ -10,7 +10,7 @@
   "keywords": [
     "Netixswap",
     "ethereum",
-    "v2",
+    "v1",
     "core",
     "Netixswap-v1"
   ],
@@ -25,9 +25,9 @@
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
-    "ethereum-waffle": "^2.5.1",
+    "ethereum-waffle": "^2.4.1",
     "ethereumjs-util": "^6.2.0",
-    "mocha": "^6.2.3",
+    "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
     "solc": "0.5.16",

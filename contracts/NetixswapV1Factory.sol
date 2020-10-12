@@ -1,9 +1,9 @@
 pragma solidity =0.5.16;
 
-import './interfaces/INetixswapFactory.sol';
-import './NetixswapPair.sol';
+import './interfaces/INetixswapV1Factory.sol';
+import './NetixswapV1Pair.sol';
 
-contract NetixswapFactory is INetixswapFactory {
+contract NetixswapV1Factory is INetixswapV1Factory {
     address public feeTo;
     address public feeToSetter;
 
@@ -21,16 +21,16 @@ contract NetixswapFactory is INetixswapFactory {
     }
 
     function createPair(address tokenA, address tokenB) external returns (address pair) {
-        require(tokenA != tokenB, 'Netixswap: IDENTICAL_ADDRESSES');
+        require(tokenA != tokenB, 'NetixswapV1: IDENTICAL_ADDRESSES');
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
-        require(token0 != address(0), 'Netixswap: ZERO_ADDRESS');
-        require(getPair[token0][token1] == address(0), 'Netixswap: PAIR_EXISTS'); // single check is sufficient
-        bytes memory bytecode = type(NetixswapPair).creationCode;
+        require(token0 != address(0), 'NetixswapV1: ZERO_ADDRESS');
+        require(getPair[token0][token1] == address(0), 'NetixswapV1: PAIR_EXISTS'); // single check is sufficient
+        bytes memory bytecode = type(NetixswapV1Pair).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
-        INetixswapPair(pair).initialize(token0, token1);
+        INetixswapV1Pair(pair).initialize(token0, token1);
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction
         allPairs.push(pair);
@@ -38,12 +38,12 @@ contract NetixswapFactory is INetixswapFactory {
     }
 
     function setFeeTo(address _feeTo) external {
-        require(msg.sender == feeToSetter, 'Netixswap: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'NetixswapV1: FORBIDDEN');
         feeTo = _feeTo;
     }
 
     function setFeeToSetter(address _feeToSetter) external {
-        require(msg.sender == feeToSetter, 'Netixswap: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'NetixswapV1: FORBIDDEN');
         feeToSetter = _feeToSetter;
     }
 }
