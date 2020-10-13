@@ -1,7 +1,7 @@
 {
   "name": "@aidigitaldreamers/v1-core",
   "description": "🎛 Core contracts for the Netixswap V1 protocol",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "homepage": "https://aidigitaldreamers.com",
   "repository": {
     "type": "git",
